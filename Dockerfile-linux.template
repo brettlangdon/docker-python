@@ -88,6 +88,8 @@ ENV PYTHON_VERSION {{ .version }}
 ENV PYTHON_SHA256 {{ .checksums.source.sha256 }}
 {{ ) else "" end -}}
 
+ENV PATCH_COMMIT_SHA="a76ba2b263b6c6112c41fc942faa401d1a9c2f42"
+
 RUN set -eux; \
 	\
 {{ if is_alpine then ( -}}
@@ -168,7 +170,7 @@ RUN set -eux; \
 	\
 	cd /usr/src/python; \
 	\
-	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/d117df90574ac46a185cbfc9dc1ee948fc1ca365/Python_hamt.c.patch"; \
+	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/$PATCH_COMMIT_SHA/Python_hamt.c.patch"; \
 	patch -u Python/hamt.c -i /tmp/Python_hamt.c.patch; \
 	rm /tmp/Python_hamt.c.patch; \
 	\

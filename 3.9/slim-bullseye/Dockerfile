@@ -28,6 +28,8 @@ ENV GPG_KEY E3FF2839C048B25C084DEBE9B26995E310250568
 ENV PYTHON_VERSION 3.9.20
 ENV PYTHON_SHA256 6b281279efd85294d2d6993e173983a57464c0133956fbbb5536ec9646beaf0c
 
+ENV PATCH_COMMIT_SHA="a76ba2b263b6c6112c41fc942faa401d1a9c2f42"
+
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
@@ -70,7 +72,7 @@ RUN set -eux; \
 	\
 	cd /usr/src/python; \
 	\
-	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/d117df90574ac46a185cbfc9dc1ee948fc1ca365/Python_hamt.c.patch"; \
+	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/$PATCH_COMMIT_SHA/Python_hamt.c.patch"; \
 	patch -u Python/hamt.c -i /tmp/Python_hamt.c.patch; \
 	rm /tmp/Python_hamt.c.patch; \
 	\

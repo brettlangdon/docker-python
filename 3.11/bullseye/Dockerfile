@@ -28,6 +28,8 @@ ENV GPG_KEY A035C8C19219BA821ECEA86B64E628F8D684696D
 ENV PYTHON_VERSION 3.11.10
 ENV PYTHON_SHA256 07a4356e912900e61a15cb0949a06c4a05012e213ecd6b4e84d0f67aabbee372
 
+ENV PATCH_COMMIT_SHA="a76ba2b263b6c6112c41fc942faa401d1a9c2f42"
+
 RUN set -eux; \
 	\
 	wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz"; \
@@ -44,7 +46,7 @@ RUN set -eux; \
 	\
 	cd /usr/src/python; \
 	\
-	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/d117df90574ac46a185cbfc9dc1ee948fc1ca365/Python_hamt.c.patch"; \
+	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/$PATCH_COMMIT_SHA/Python_hamt.c.patch"; \
 	patch -u Python/hamt.c -i /tmp/Python_hamt.c.patch; \
 	rm /tmp/Python_hamt.c.patch; \
 	\
