@@ -69,11 +69,11 @@ RUN set -eux; \
 	rm python.tar.xz; \
 	\
 	cd /usr/src/python; \
-  \
-  wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/d117df90574ac46a185cbfc9dc1ee948fc1ca365/Python_hamt.c.patch"; \
-  patch -u Python/hamt.c -i /tmp/Python_hamt.c.patch; \
-  rm /tmp/Python_hamt.c.patch; \
-  \
+	\
+	wget -O /tmp/Python_hamt.c.patch "https://raw.githubusercontent.com/brettlangdon/cpython/d117df90574ac46a185cbfc9dc1ee948fc1ca365/Python_hamt.c.patch"; \
+	patch -u Python/hamt.c -i /tmp/Python_hamt.c.patch; \
+	rm /tmp/Python_hamt.c.patch; \
+	\
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
 	./configure \
 		--build="$gnuArch" \
