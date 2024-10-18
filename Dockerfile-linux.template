@@ -88,7 +88,7 @@ ENV PYTHON_VERSION {{ .version }}
 ENV PYTHON_SHA256 {{ .checksums.source.sha256 }}
 {{ ) else "" end -}}
 
-ENV PATCH_COMMIT_SHA="f5dcebc98b5e39ebe2fb27f9132a2d962246757f"
+ENV PATCH_COMMIT_SHA="31fe8858f9a5f84dafb752c988d729b2d09d9782"
 
 RUN set -eux; \
 	\
